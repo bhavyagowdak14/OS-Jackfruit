@@ -64,12 +64,14 @@ dmesg | tail
 ## 3. Screenshots
 ### Screenshot 1 — Multi-container supervision
 Two containers (alpha, beta) running simultaneously under one supervisor process.
+
 ![WhatsApp Image 2026-04-13 at 10 40 07 PM](https://github.com/user-attachments/assets/9fe0e308-b182-415c-9f53-32b6304c7eb5)
 ![WhatsApp Image 2026-04-13 at 10 40 14 PM](https://github.com/user-attachments/assets/be29c81f-6358-4b51-86c1-3313f1222c0d)
 
 
 ### Screenshot 2 — Metadata tracking
 Output of `ps` command showing container ID, PID, state, start time, soft and hard memory limits.
+
 ![WhatsApp Image 2026-04-13 at 10 40 55 PM](https://github.com/user-attachments/assets/1a25c413-81fd-4358-a9a1-3dbc965e5f30)
 
 
@@ -77,32 +79,38 @@ Output of `ps` command showing container ID, PID, state, start time, soft and ha
 Container output captured through the logging pipeline:
 pipe → producer thread → bounded buffer → consumer thread → log file.
 `engine logs alpha` retrieves the captured output.
+
 ![WhatsApp Image 2026-04-13 at 10 41 38 PM](https://github.com/user-attachments/assets/63404c56-c099-4f68-8fce-c1979870b629)
 
 
 ### Screenshot 4 — CLI and IPC
 CLI commands (`start`, `stop`, `ps`) sent to supervisor over a UNIX domain socket at `/tmp/engine.sock`. Supervisor responds correctly to each command.
+
 ![WhatsApp Image 2026-04-13 at 10 42 20 PM](https://github.com/user-attachments/assets/8e44d25d-af4b-4dd8-990d-fb42b134cf55)
 ![WhatsApp Image 2026-04-13 at 10 42 29 PM](https://github.com/user-attachments/assets/77243c57-3bf2-48d6-bf3e-3886f2d17e38)
 
 
 ### Screenshot 5 — Soft-limit warning
 `dmesg` output showing a soft-limit warning event when a container's RSS memory exceeds the configured soft threshold.
+
 ![WhatsApp Image 2026-04-13 at 10 44 26 PM](https://github.com/user-attachments/assets/594aa7ec-846e-49a6-9232-5e99e10f2533)
 
 
 ### Screenshot 6 — Hard-limit enforcement
 `dmesg` output showing a container being killed after exceeding its hard memory limit. Supervisor metadata reflects the kill by updating container state to `killed`.
+
 ![WhatsApp Image 2026-04-13 at 10 44 58 PM](https://github.com/user-attachments/assets/6d401568-7cb6-461d-9d7e-f91830e43f80)
 
 
 ### Screenshot 7 — Scheduling experiment
 Terminal output from scheduling experiments comparing CPU-bound and I/O-bound workloads under different priorities. Observable differences in completion time and CPU share are shown.
+
 ![WhatsApp Image 2026-04-13 at 10 45 41 PM](https://github.com/user-attachments/assets/532c1112-4958-403d-8a78-b00443104f40)
 
 
 ### Screenshot 8 — Clean teardown
 Evidence that all containers are reaped, logging threads exit cleanly, and no zombie processes remain after supervisor shutdown. Shown via `ps aux` output and supervisor exit messages.
+
 ![WhatsApp Image 2026-04-13 at 10 46 03 PM](https://github.com/user-attachments/assets/d18cd527-16dc-41ca-91ce-416382e83c10)
 
 ---
