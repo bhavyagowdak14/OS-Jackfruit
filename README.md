@@ -56,7 +56,7 @@ sudo ./engine stop beta
 ### Cleanup
 ```bash
 sudo rmmod monitor
-dmesg | tail
+ps aux | grep sleep
 ```
 
 ---
